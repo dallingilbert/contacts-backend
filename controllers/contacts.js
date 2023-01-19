@@ -1,6 +1,7 @@
 const { ObjectID } = require('bson');
 const mongodb = require('../db/connection');
 
+/** Returns a list of contacts */
 const getContacts = async (req, res) => {
   const result = await mongodb.getDb().db('week02').collection('contacts').find();
 
@@ -10,6 +11,7 @@ const getContacts = async (req, res) => {
   });
 };
 
+/** Returns a single contact by their ID */
 const getContactById = async (req, res) => {
   const id = ObjectID(req.params.contactId);
   //console.log(id);
@@ -21,6 +23,7 @@ const getContactById = async (req, res) => {
   });
 };
 
+/** Adds a contact to the database */
 const addContact = async (req, res) => {
   console.log('Adding contact');
   const result = await mongodb.getDb().db('week02').collection('contacts');
@@ -32,6 +35,7 @@ const addContact = async (req, res) => {
   });
 };
 
+/** Updates a contacts favorite Color */
 const updateContact = async (req, res) => {
   console.log('Updating contact');
   const id = ObjectID(req.params.contactId);
@@ -50,6 +54,7 @@ const updateContact = async (req, res) => {
     });
 };
 
+/** Deletes a contact from the database */
 const deleteContact = async (req, res) => {
   console.log('Deleting a contact');
   const result = await mongodb.getDb().db('week02').collection('contacts');
