@@ -27,12 +27,15 @@ content-type: application/json
 }
 
 ### UPDATE REQUEST
-PUT http://localhost:3000/contacts/63c9bd1c260643106b88f0b8 HTTP/1.1
+PUT http://localhost:3000/contacts/63cc742b27429ffc7dfa0029 HTTP/1.1
 
 ### DELETE REQUEST
 DELETE http://localhost:3000/contacts/deleteContact HTTP/1.1
 
-### PRODUCTION 
+// End of Localhost testing
+
+### PRODUCTION REQUESTS!!!!
+
 // Get names
 GET https://gilbert-cse341.onrender.com/ HTTP/1.1
 
@@ -47,3 +50,21 @@ GET https://gilbert-cse341.onrender.com/contacts/63bba24e1beb4457c9bcccbf HTTP/1
 
 ### Return a contact document by ID
 GET https://gilbert-cse341.onrender.com/contacts/63bba3c11beb4457c9bcccc2 HTTP/1.1
+
+### POST REQUEST
+POST https://contacts-backend-49xc.onrender.com/contacts/addContact HTTP/1.1
+content-type: application/json
+
+{
+    "firstName": "Bob",
+    "lastName": "The Builder",
+    "email": "canwefixit@gmail.com",
+    "favoriteColor": "Tonka Truck Yellow",
+    "birthday": "1990-15-05T07:00:00.000Z"
+}
+
+### UPDATE REQUEST
+PUT https://contacts-backend-49xc.onrender.com/contacts/63bba24e1beb4457c9bcccbf HTTP/1.1
+
+### DELETE REQUEST
+DELETE https://contacts-backend-49xc.onrender.com/contacts/deleteContact HTTP/1.1
