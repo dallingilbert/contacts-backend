@@ -33,9 +33,6 @@ DELETE http://localhost:3000/contacts/63d00f92c44ffa42ab8e64ce
 
 ### PRODUCTION REQUESTS!!!!
 
-// Get names
-GET https://contacts-backend-49xc.onrender.com HTTP/1.1
-
 ### Return all contact documents
 GET https://contacts-backend-49xc.onrender.com/contacts HTTP/1.1
 
@@ -61,7 +58,7 @@ content-type: application/json
 }
 
 ### UPDATE REQUEST
-PUT https://contacts-backend-49xc.onrender.com/contacts/63d032e10cf74cc821a83ee2 HTTP/1.1
+PUT https://contacts-backend-49xc.onrender.com/contacts/63d034537c5f3ec81ed08829 HTTP/1.1
 
 ### DELETE REQUEST
-DELETE https://contacts-backend-49xc.onrender.com/contacts/63d032e10cf74cc821a83ee2 HTTP/1.1
+DELETE https://contacts-backend-49xc.onrender.com/contacts/63d034537c5f3ec81ed08829 HTTP/1.1
