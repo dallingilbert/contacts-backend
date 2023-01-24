@@ -57,9 +57,10 @@ const updateContact = async (req, res) => {
 /** Deletes a contact from the database */
 const deleteContact = async (req, res) => {
   console.log('Deleting a contact');
+  const id = ObjectID(req.params.contactId);
   const result = await mongodb.getDb().db('week02').collection('contacts');
 
-  result.deleteOne({ firstName: 'Bob' }).then((contact) => {
+  result.deleteOne({ _id: id }).then((contact) => {
     res.status(200).json(contact);
   });
 };
