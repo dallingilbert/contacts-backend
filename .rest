@@ -1,6 +1,4 @@
 ### LOCALHOST
-// Return a name
-GET http://localhost:3000/ HTTP/1.1
 
 ### Return all contact documents
 GET http://localhost:3000/contacts HTTP/1.1
@@ -27,11 +25,10 @@ content-type: application/json
 }
 
 ### UPDATE REQUEST
-PUT http://localhost:3000/contacts/63cffef363393b2a0b3286c1 HTTP/1.1
+PUT http://localhost:3000/contacts/63d004c7da647e4c76f926f4 HTTP/1.1
 
 ### DELETE REQUEST
-DELETE http://localhost:3000/contacts/63cec5aae26b8c17fea920e0 HTTP/1.1
-
+DELETE http://localhost:3000/contacts/63d00f92c44ffa42ab8e64ce
 // End of Localhost testing
 
 ### PRODUCTION REQUESTS!!!!
