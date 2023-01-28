@@ -57,7 +57,7 @@ const addContact = async (req, res) => {
 /** Updates a contacts favorite Color */
 const updateContact = async (req, res) => {
   /* #swagger.tags = ['Contacts'] 
-     #swagger.summary = 'Update a contact/'s favorite color.' 
+     #swagger.summary = 'Update a contacts favorite color.' 
      #swagger.description = 'Takes the unique identifier of a contact and updates the targeted contacts favorite color
      to Blue.' 
      #swagger.parameters['contactId'] = {

@@ -25,10 +25,13 @@ content-type: application/json
 }
 
 ### UPDATE REQUEST
-PUT http://localhost:3000/contacts/63d004c7da647e4c76f926f4 HTTP/1.1
+PUT http://localhost:3000/contacts/63d47ad5a52a246b0ca451f4 HTTP/1.1
 
 ### DELETE REQUEST
-DELETE http://localhost:3000/contacts/63d00f92c44ffa42ab8e64ce
+DELETE http://localhost:3000/contacts/63d06f77a10c2b6687e97ea5
+
+### API DOCS
+GET http://localhost:3000/api-docs
 // End of Localhost testing
 
 ### PRODUCTION REQUESTS!!!!
@@ -62,3 +65,6 @@ PUT https://contacts-backend-49xc.onrender.com/contacts/63d034537c5f3ec81ed08829
 
 ### DELETE REQUEST
 DELETE https://contacts-backend-49xc.onrender.com/contacts/63d034537c5f3ec81ed08829 HTTP/1.1
+
+### API DOCS
+GET https://contacts-backend-49xc.onrender.com/api-docs

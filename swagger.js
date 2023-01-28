@@ -34,10 +34,10 @@ const doc = {
   },
   host: 'localhost:3000',
   basePath: '/',
-  schemes: ['http']
+  schemes: ['http', 'https']
 };
 
-const outputFile = './swagger-output.json';
+const outputFile = './swagger.json';
 const endpointsFiles = ['./server.js'];
 
 swaggerAutogen(outputFile, endpointsFiles, doc).then(async () => {
