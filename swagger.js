@@ -32,7 +32,7 @@ const doc = {
       insertedId: '63d06d25ac5027cccc3c5eb6'
     }
   },
-  host: 'localhost:3000',
+  host: 'contacts-backend-49xc.onrender.com',
   basePath: '/',
   schemes: ['http', 'https']
 };
