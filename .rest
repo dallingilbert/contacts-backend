@@ -28,7 +28,7 @@ content-type: application/json
 PUT http://localhost:3000/contacts/63d47ad5a52a246b0ca451f4 HTTP/1.1
 
 ### DELETE REQUEST
-DELETE http://localhost:3000/contacts/63d06f77a10c2b6687e97ea5
+DELETE http://localhost:3000/contacts/63bba24e1beb4457c9bcccbf
 
 ### API DOCS
 GET http://localhost:3000/api-docs

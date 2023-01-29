@@ -9,7 +9,6 @@ const getContacts = async (req, res) => {
      a firstName, lastName, email, favoriteColor and birthday as a json object.' 
      #swagger.responses[200] = {
         in: 'body',
-        description: 'An example of the data to be returned by retrieving a list of contacts.',
         schema: { $ref: '#/definitions/contacts' }
   } */
   const result = await mongodb.getDb().db('week02').collection('contacts').find();
@@ -27,8 +26,10 @@ const getContactById = async (req, res) => {
      birthday as a json object.' 
      #swagger.parameters['contactId'] = {
       description: 'A unique identifier assigned to a contact on creation.'
-}
-  */
+  }  #swagger.responses[200] = {
+      in: 'body',
+      schema : { $ref: '#/definitions/singleContact' } 
+  } */
   const id = ObjectID(req.params.contactId);
   const result = await mongodb.getDb().db('week02').collection('contacts').find({ _id: id });
   result.toArray().then((contacts) => {
@@ -43,8 +44,12 @@ const addContact = async (req, res) => {
      #swagger.summary = 'Create a contact and save it to the database.' 
      #swagger.description = 'Creates a contact that includes the required information of a firstName, lastName, email, favoriteColor
      and birthday.' 
+     #swagger.parameters['contact'] = {
+        in: 'body',
+        description: 'Required information to add a contact.',
+        schema: { $ref: '#/definitions/singleContact' } 
+     }
      #swagger.responses[201] = {
-        description: 'Created contact response.',
         schema: { $ref: '#/definitions/createdResponse' }
   } */
   const result = await mongodb.getDb().db('week02').collection('contacts');
@@ -86,8 +91,10 @@ const deleteContact = async (req, res) => {
      #swagger.description = 'Use the unique identifier of a contact to select and remove them from the database.' 
      #swagger.parameters['contactId'] = {
       description: 'A unique identifier assigned to a contact on creation.'
-}
-  */
+  }  #swagger.responses[200] = {
+      in: 'body',
+      schema: { $ref: '#/definitions/deletedResponse' }
+  } */
   const id = ObjectID(req.params.contactId);
   const result = await mongodb.getDb().db('week02').collection('contacts');
 

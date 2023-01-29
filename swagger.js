@@ -25,9 +25,20 @@ const doc = {
         birthday: '1996-01-03T07:00:00.000Z'
       }
     ],
+    singleContact: {
+      $firstName: 'Bob',
+      $lastName: 'The Builder',
+      $email: 'canwefixit@gmail.com ',
+      $favoriteColor: 'Tonka Truck Yellow',
+      $birthday: '1995-02-27T07:00:00.000Z'
+    },
     createdResponse: {
       acknowledged: true,
       insertedId: '63d06d25ac5027cccc3c5eb6'
+    },
+    deletedResponse: {
+      acknowledged: true,
+      deletedCount: 1
     }
   },
   host: 'contacts-backend-49xc.onrender.com',
