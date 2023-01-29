@@ -70,18 +70,27 @@ const updateContact = async (req, res) => {
 }
   */
   const id = ObjectID(req.params.contactId);
-  const result = await mongodb.getDb().db('week02').collection('contacts');
-  result
-    .updateOne(
-      { _id: id },
-      {
-        $set: { favoriteColor: 'Blue' },
-        $currentDate: { lastModified: true }
-      }
-    )
-    .then((updateContact) => {
-      res.status(204).json(updateContact);
-    });
+
+  const contact = {
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    favoriteColor: req.body.favoriteColor,
+    birthday: req.body.birthday
+  };
+
+  const response = await mongodb
+    .getDb()
+    .db('week02')
+    .collection('contacts')
+    .replaceOne({ _id: id }, contact);
+  console.log(response);
+
+  if (response.modifiedCount > 0) {
+    res.status(204).send();
+  } else {
+    res.status(500).json(response.error || 'Some error occured while updating the contact');
+  }
 };
 
 /** Deletes a contact from the database */

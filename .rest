@@ -10,7 +10,7 @@ GET http://localhost:3000/contacts/63bba3191beb4457c9bcccc1 HTTP/1.1
 GET http://localhost:3000/contacts/63bba24e1beb4457c9bcccbf HTTP/1.1
 
 ### Return a contact document by ID
-GET http://localhost:3000/contacts/63bba3c11beb4457c9bcccc2 HTTP/1.1
+GET http://localhost:3000/contacts/63d61000dd75f14f3d8618fe HTTP/1.1
 
 ### POST REQUEST
 POST http://localhost:3000/contacts HTTP/1.1
@@ -25,10 +25,19 @@ content-type: application/json
 }
 
 ### UPDATE REQUEST
-PUT http://localhost:3000/contacts/63d47ad5a52a246b0ca451f4 HTTP/1.1
+PUT http://localhost:3000/contacts/63d60f42dd75f14f3d8618fd HTTP/1.1
+content-type: application/json
+
+{
+    "firstName": "Bobby",
+    "lastName": "The Builder",
+    "email": "canwefixit@gmail.com",
+    "favoriteColor": "Tonka Truck Yellow",
+    "birthday": "1990-15-05T07:00:00.000Z"
+}
 
 ### DELETE REQUEST
-DELETE http://localhost:3000/contacts/63bba24e1beb4457c9bcccbf
+DELETE http://localhost:3000/contacts/63d63732a3467317c16cd0c8
 
 ### API DOCS
 GET http://localhost:3000/api-docs
@@ -62,6 +71,15 @@ content-type: application/json
 
 ### UPDATE REQUEST
 PUT https://contacts-backend-49xc.onrender.com/contacts/63d034537c5f3ec81ed08829 HTTP/1.1
+content-type: application/json
+
+{
+    "firstName": "Bob",
+    "lastName": "The Builder",
+    "email": "canwefixit@gmail.com",
+    "favoriteColor": "Tonka Truck Yellow",
+    "birthday": "1990-15-05T07:00:00.000Z"
+}
 
 ### DELETE REQUEST
 DELETE https://contacts-backend-49xc.onrender.com/contacts/63d034537c5f3ec81ed08829 HTTP/1.1
