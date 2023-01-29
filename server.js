@@ -3,12 +3,18 @@ const app = express();
 const mongodb = require('./db/connection');
 const bodyParser = require('body-parser');
 const PORT = 3000;
+const cors = require('cors');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
 
 app
   .use(bodyParser.urlencoded({ extended: true }))
   .use(bodyParser.json())
+  .use(
+    cors({
+      origin: '*'
+    })
+  )
   .use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader(

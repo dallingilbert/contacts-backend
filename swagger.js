@@ -1,5 +1,3 @@
-const { ObjectID } = require('bson');
-
 const swaggerAutogen = require('swagger-autogen')();
 
 const doc = {
