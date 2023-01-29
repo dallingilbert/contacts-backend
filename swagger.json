@@ -5,7 +5,7 @@
     "description": "An example API created to simulate CRUD operations on a small database",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "contacts-backend-49xc.onrender.com",
   "basePath": "/",
   "schemes": [
     "http",
