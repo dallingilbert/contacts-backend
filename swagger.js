@@ -13,8 +13,7 @@ const doc = {
         lastName: 'Gilbert',
         email: 'd.jamesgilbert4@gmail.com',
         favoriteColor: 'Blue',
-        birthday: '1995-02-27T07:00:00.000Z',
-        lastModified: '2023-01-22T05:53:54.125Z'
+        birthday: '1995-02-27T07:00:00.000Z'
       },
       {
         _id: '63bba3191beb4457c9bcccc1',
