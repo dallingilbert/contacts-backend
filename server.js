@@ -1,27 +1,17 @@
 const express = require('express');
-const { graphqlHTTP } = require('express-graphql');
-const schema = require('./schemas/schema');
+const mongodb = require('./db/connection');
+const { ApolloServer } = require('@apollo/server');
+const { startStandaloneServer } = require('@apollo/server/standalone');
+const typeDefs = require('./schemas/typeDefs');
+const resolvers = require('./schemas/resolvers');
+
 const bodyParser = require('body-parser');
-const PORT = 3000;
-require('dotenv').config();
-const db = require('./db/connection');
-
 const app = express();
+const server = new ApolloServer({ typeDefs, resolvers });
 
-app.use(bodyParser.urlencoded({ extended: true })).use(bodyParser.json());
-//This route will be used as an endpoint to interact with Graphql,
-//All queries will go through this route.
 app
-  .use(
-    '/graphql',
-    graphqlHTTP({
-      //directing express-graphql to use this schema to map out the graph
-      schema,
-      //directing express-graphql to use graphiql when goto '/graphql' address in the browser
-      //which provides an interface to make GraphQl queries
-      graphiql: true
-    })
-  )
+  .use(bodyParser.urlencoded({ extended: true }))
+  .use(bodyParser.json())
   .use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader(
@@ -34,8 +24,12 @@ app
   })
   .use('/', require('./routes'));
 
-db.then(() => {
-  app.listen(PORT, () => {
-    console.log(`Listening on port ${PORT}`);
-  });
+mongodb.initDb((err, mongodb) => {
+  if (err) {
+    console.log(err);
+  } else {
+    startStandaloneServer(server, {
+      listen: { port: 3000 }
+    });
+  }
 });
