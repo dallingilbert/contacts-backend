@@ -6,6 +6,11 @@ const PORT = 3000;
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
 
+const app = express();
+
+app.use(bodyParser.urlencoded({ extended: true })).use(bodyParser.json());
+//This route will be used as an endpoint to interact with Graphql,
+//All queries will go through this route.
 app
   .use(bodyParser.urlencoded({ extended: true }))
   .use(bodyParser.json())

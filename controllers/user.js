@@ -1,21 +1,35 @@
 const { ObjectID } = require('bson');
 const mongodb = require('../db/connection');
-const User = require('../models/user');
 
 /* Returns a list of user */
-const getUsers = async (req, res) => {
-  const cursor = User.find({}).cursor();
-  let userArr = [];
-  for (let doc = await cursor.next(); doc != null; doc = await cursor.next()) {
-    userArr.push(doc);
-    //console.log(doc);
-  }
-  res.json({ status: 201 });
-  return userArr;
+const getUser = async (req, res) => {
+  /* #swagger.tags = ['Users'] 
+     #swagger.summary = 'Retrieve a list of user from the database.' 
+     #swagger.description = 'Returns a list of all the users information in our database. At this time every contact will return
+     a firstName, lastName, email, favoriteColor and birthday as a json object.' 
+     #swagger.responses[200] = {
+        in: 'body',
+        schema: { $ref: '#/definitions/User' }
+  } */
+  const result = await mongodb.db('shop').collection('user').find();
+  result.toArray().then((lists) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.status(200).json(lists);
+  });
 };
 
 /* Returns a single usedr by their ID */
 const getUserId = async (req, res) => {
+  /* #swagger.tags = ['Users'] 
+     #swagger.summary = 'Retrieve a usedr by their unique identifier.' 
+     #swagger.description = 'Returns the specified users information. Includes a firstName, lastName, email, favoriteColor and
+     birthday as a json object.' 
+     #swagger.parameters['id'] = {
+      description: 'A unique identifier assigned to a usedr on creation.'
+  }  #swagger.responses[200] = {
+      in: 'body',
+      schema : { $ref: '#/definitions/singleUser' } 
+  } */
   const id = ObjectID(req.params.id);
   const result = await mongodb.getDb().db('shop').collection('user').find({ _id: id });
   result.toArray().then((user) => {
@@ -26,15 +40,34 @@ const getUserId = async (req, res) => {
 
 /** Adds a contact to the database */
 const addUser = async (req, res) => {
-  // .then((newUser) => {
-  //   res.setHeader('Content-Type', 'application/json');
-  //   res.status(201).json(newUser);
-  // });
-  // doc.insertOne(newUser);
+  /* #swagger.tags = ['Users'] 
+     #swagger.summary = 'Create a user and save it to the database.' 
+     #swagger.description = 'Creates a user that includes the required information of a firstName, lastName, email, favoriteColor
+     and birthday.' 
+     #swagger.parameters['User'] = {
+        in: 'body',
+        description: 'Required information to add a user.',
+        schema: { $ref: '#/definitions/singleUser' } 
+     }
+     #swagger.responses[201] = {
+        schema: { $ref: '#/definitions/createdResponse' }
+  } */
+  const result = await mongodb.getDb().db('shop').collection('user');
+  result.insertOne(req.body).then((newUser) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.status(201).json(newUser);
+  });
 };
 
 /** Updates a user */
 const updateUser = async (req, res) => {
+  /* #swagger.tags = ['Users'] 
+     #swagger.summary = 'Update user information' 
+     #swagger.description = 'Takes the unique identifier of a user and updates the targeted user information.' 
+     #swagger.parameters['id'] = {
+      description: 'A unique identifier assigned to a user on creation.'
+}
+  */
   const id = ObjectID(req.params.id);
 
   const user = {
@@ -91,4 +124,4 @@ const deleteUser = async (req, res) => {
   });
 };
 
-module.exports = { getUsers, getUserId, addUser, updateUser, deleteUser };
+module.exports = { getUser, getUserId, addUser, updateUser, deleteUser };

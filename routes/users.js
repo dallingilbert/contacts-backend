@@ -2,8 +2,8 @@ const routes = require('express').Router();
 const userController = require('../controllers/user');
 
 // GET Routes
-routes.get('/', userController.getUsers);
-routes.get('/:id', userController.getUserId);
+routes.get('/', userController.getUser);
+routes.get('/:id', userController.getUser);
 
 // POST routes
 routes.post('/', userController.addUser);
