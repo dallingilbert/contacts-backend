@@ -1,0 +1,268 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Dallins Contact API",
+    "description": "An example API created to simulate CRUD operations on a small database",
+    "version": "1.0.0"
+  },
+  "host": "contacts-backend-49xc.onrender.com",
+  "basePath": "/",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "paths": {
+    "/api-docs": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/contacts/": {
+      "get": {
+        "tags": [
+          "Contacts"
+        ],
+        "summary": "Retrieve a list of contacts from the database.",
+        "description": "Returns a list of all the contacts information in our database. At this time every contact will return   a firstName, lastName, email, favoriteColor and birthday as a json object.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/contacts"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Contacts"
+        ],
+        "summary": "Create a contact and save it to the database.",
+        "description": "Creates a contact that includes the required information of a firstName, lastName, email, favoriteColor   and birthday.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "contact",
+            "in": "body",
+            "description": "Required information to add a contact.",
+            "schema": {
+              "$ref": "#/definitions/singleContact"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/createdResponse"
+            }
+          }
+        }
+      }
+    },
+    "/contacts/{contactId}": {
+      "get": {
+        "tags": [
+          "Contacts"
+        ],
+        "summary": "Retrieve a contact by their unique identifier.",
+        "description": "Returns the specified contacts information. Includes a firstName, lastName, email, favoriteColor and   birthday as a json object.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "contactId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "A unique identifier assigned to a contact on creation."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/singleContact"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Contacts"
+        ],
+        "summary": "Update contacts information",
+        "description": "Takes the unique identifier of a contact and updates the targeted contacts information.",
+        "parameters": [
+          {
+            "name": "contactId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "A unique identifier assigned to a contact on creation."
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "example": "any"
+                },
+                "lastName": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "favoriteColor": {
+                  "example": "any"
+                },
+                "birthday": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Contacts"
+        ],
+        "summary": "Removes the contact from database.",
+        "description": "Use the unique identifier of a contact to select and remove them from the database.",
+        "parameters": [
+          {
+            "name": "contactId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "A unique identifier assigned to a contact on creation."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/deletedResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "contacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "example": "63bba3191beb4457c9bcccc1"
+          },
+          "firstName": {
+            "type": "string",
+            "example": "Chase"
+          },
+          "lastName": {
+            "type": "string",
+            "example": "Gilbert"
+          },
+          "email": {
+            "type": "string",
+            "example": "chasegilbert0651@gmail.com"
+          },
+          "favoriteColor": {
+            "type": "string",
+            "example": "Blue"
+          },
+          "birthday": {
+            "type": "string",
+            "example": "1996-01-03T07:00:00.000Z"
+          }
+        }
+      }
+    },
+    "singleContact": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string",
+          "example": "Bob"
+        },
+        "lastName": {
+          "type": "string",
+          "example": "The Builder"
+        },
+        "email": {
+          "type": "string",
+          "example": "canwefixit@gmail.com "
+        },
+        "favoriteColor": {
+          "type": "string",
+          "example": "Tonka Truck Yellow"
+        },
+        "birthday": {
+          "type": "string",
+          "example": "1995-02-27T07:00:00.000Z"
+        }
+      },
+      "required": [
+        "firstName",
+        "lastName",
+        "email",
+        "favoriteColor",
+        "birthday"
+      ]
+    },
+    "createdResponse": {
+      "type": "object",
+      "properties": {
+        "acknowledged": {
+          "type": "boolean",
+          "example": true
+        },
+        "insertedId": {
+          "type": "string",
+          "example": "63d06d25ac5027cccc3c5eb6"
+        }
+      }
+    },
+    "deletedResponse": {
+      "type": "object",
+      "properties": {
+        "acknowledged": {
+          "type": "boolean",
+          "example": true
+        },
+        "deletedCount": {
+          "type": "number",
+          "example": 1
+        }
+      }
+    }
+  }
+}

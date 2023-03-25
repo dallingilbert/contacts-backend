@@ -1,17 +1,16 @@
 const express = require('express');
-const mongodb = require('./db/connection');
-const { ApolloServer } = require('@apollo/server');
-const { startStandaloneServer } = require('@apollo/server/standalone');
-const typeDefs = require('./schemas/typeDefs');
-const resolvers = require('./schemas/resolvers');
-
-const bodyParser = require('body-parser');
 const app = express();
-const server = new ApolloServer({ typeDefs, resolvers });
+const mongodb = require('./db/connection');
+const bodyParser = require('body-parser');
+const PORT = 3000;
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
 
 app
   .use(bodyParser.urlencoded({ extended: true }))
   .use(bodyParser.json())
+  .use('/api-docs', swaggerUi.serve)
+  .get('/api-docs', swaggerUi.setup(swaggerDocument))
   .use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader(
@@ -28,8 +27,6 @@ mongodb.initDb((err, mongodb) => {
   if (err) {
     console.log(err);
   } else {
-    startStandaloneServer(server, {
-      listen: { port: 3000 }
-    });
+    app.listen(PORT, () => console.log(`Connected to DB and running on port: ${PORT}`));
   }
 });
